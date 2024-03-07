@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">DZ5_PROBA</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="web_client_id">834830708574-81vjj48sekrk94v80ctceldqj1l6jvik.apps.googleusercontent.com</string>
+    <string name="signin">Sign In</string>
+    <string name="hello_user">Hello </string>
+    <string name="enter_email">Введите почту</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_in">Войти в систему</string>
+    <string name="forgot_password">Зaбыли пароль</string>
+    <string name="enter_confirm_code">Введите код подверждение</string>
+    <string name="confirm">Подвердить</string>
+    <string name="new_code">Введите новый пароль</string>
+    <string name="helllo">Helllo</string>
+
+</resources>

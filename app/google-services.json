@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "834830708574",
+    "project_id": "dz5-proba",
+    "storage_bucket": "dz5-proba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834830708574:android:d000e99b3494a92b9729cf",
+        "android_client_info": {
+          "package_name": "com.example.dz5_proba"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpLhH7rCtwAYJRUKbPYbeEWZuDSxchaa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
