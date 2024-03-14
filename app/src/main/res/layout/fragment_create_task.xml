@@ -5,19 +5,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".create.CreateTaskFragment">
 
     <EditText
-        android:id="@+id/et_title"
+        android:id="@+id/et_tasks_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/category_title" />
+        android:hint="@string/task_s_title" />
+
+    <EditText
+        android:id="@+id/et_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/category_name" />
 
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/btn_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_category" />
-
+        android:text="@string/create" />
 
 </LinearLayout>
