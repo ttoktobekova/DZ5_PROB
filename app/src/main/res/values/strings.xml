@@ -15,5 +15,21 @@
     <string name="confirm">Подвердить</string>
     <string name="new_code">Введите новый пароль</string>
     <string name="helllo">Helllo</string>
+    <string name="task_name">task name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_random_tasks">add random tasks</string>
+    <string name="gallery">Gallery</string>
+    <string name="category_title">category title</string>
+    <string name="add_category">add category</string>
+    <string name="task_s_title">Task\'s title</string>
+    <string name="category_name">category name</string>
+    <string name="create">create</string>
+    <string name="current_username">Current Username:</string>
+    <string name="new_username">New Username:</string>
+    <string name="avatar">Avatar:</string>
+    <string name="enter_new_avatar_url">Enter New Avatar URL</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="save_changes">Save Changes</string>
 
 </resources>

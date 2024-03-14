@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.Gallery.GalleryFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,47 +39,25 @@
             android:text="@string/sign_in"
             android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/tv_forgot_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/forgot_password"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/et_confirum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enter_confirm_code"
-            android:visibility="gone" />
-
-        <EditText
-            android:id="@+id/et_new_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/new_code"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/btn_confirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:backgroundTint="@color/black"
-            android:text="@string/confirm"
-            android:visibility="gone" />
 
         <Button
             android:id="@+id/btn_signUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
             android:backgroundTint="@color/yellow"
             android:text="@string/sign_up"
             android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_add_random"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:backgroundTint="@color/yellow"
+            android:text="@string/add_random_tasks"
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_task"
@@ -88,20 +65,8 @@
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_task" />
+
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginHorizontal="40dp"
-        android:backgroundTint="@color/green_toad"
-        android:drawableLeft="@drawable/ic_google"
-        android:text="@string/signin"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:cornerRadius="36dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
