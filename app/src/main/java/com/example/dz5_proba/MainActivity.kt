@@ -3,6 +3,7 @@ package com.example.dz5_proba
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,20 +14,24 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dz5_proba.databinding.ActivityMainBinding
-import java.security.Permission
+import com.google.firebase.Firebase
+import com.google.firebase.messaging.messaging
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private val notificationPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { _ ->
             //эсли пользователь не дал разрешение мы ему обьясняем почему нужен
 //        if (!isGranded){}
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Firebase.messaging.token.addOnSuccessListener {
+            Log.e("TOKEN", "ON NEW TOKEN:$it")
+        }
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
@@ -56,7 +61,8 @@ class MainActivity : AppCompatActivity() {
             if (ActivityCompat.checkSelfPermission(
                     this,
                     android.Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED) {
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 notificationPermission.launch(android.Manifest.permission.POST_NOTIFICATIONS)
             }
         }

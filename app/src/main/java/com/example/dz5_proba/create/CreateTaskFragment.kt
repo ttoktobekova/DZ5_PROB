@@ -33,16 +33,13 @@ class CreateTaskFragment : Fragment() {
                 categoryManager.findCategoryByName(categoryTitle) { category ->
                     val task = Task(
                         title = binding.etTasksTitle.text.toString(),
-                        categoryId = category.id
-                    )
+                        categoryId = category.id)
                     taskManager.addToDB(task) {
                         setFragmentResult(TASK_RESULT_KEY, bundleOf())
                         findNavController().navigateUp()
                     }
                 }
-
             }
-
         }
     }
     companion object {

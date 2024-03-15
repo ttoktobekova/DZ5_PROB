@@ -13,17 +13,21 @@ class TaskManager {
     private val failruListener: (Exception) -> Unit = {
         Log.e("firebace", "add task failed", it)
     }
+
     fun addToDB(
-        task: Task = generateRandomTask(), onSuccess: () -> Unit) {
+        task: Task = generateRandomTask(), onSuccess: () -> Unit
+    ) {
         firestore.collection(Constants.Firebace.Users)
             .document(auth.currentUser?.uid.toString())
             .collection(Constants.Firebace.Tasks)
             .add(task)
             .addOnSuccessListener {
                 it.set(task.copy(id = it.id))
-                onSuccess() }
+                onSuccess()
+            }
             .addOnFailureListener {
-                Log.e("firebase", "add task failed", it) }
+                Log.e("firebase", "add task failed", it)
+            }
     }
 
     fun updateTask(task: Task) {
@@ -41,11 +45,13 @@ class TaskManager {
             .collection(Constants.Firebace.Tasks)
             .get()
             .addOnSuccessListener {
-                onSuccess(it.toObjects(Task::class.java)) }
-            .addOnFailureListener(failruListener) }
+                onSuccess(it.toObjects(Task::class.java))
+            }
+            .addOnFailureListener(failruListener)
+    }
 
     fun generateRandomTask() = Task(
         title = "Title(${kotlin.random.Random.nextInt(1000)}",
-        done = false)
+        done = false
+    )
 }
-

@@ -13,6 +13,7 @@ class CategoryManager {
     private val failruListener: (Exception) -> Unit = {
         Log.e("firebace", "add task failed", it)
     }
+
     fun findCategoryByName(title: String, success: (Category) -> Unit) {
         getAll { categories ->
             categories.forEach {
@@ -23,7 +24,8 @@ class CategoryManager {
 
     fun add(title: String, success: () -> Unit) {
         val category = Category(
-            title = title, authorId = auth.currentUser?.uid.toString())
+            title = title, authorId = auth.currentUser?.uid.toString()
+        )
         firestore
             .collection(Constants.Firebace.CATEGORIES)
             .add(category)
@@ -33,6 +35,7 @@ class CategoryManager {
                 success()
             }
     }
+
     fun getAll(onSuccess: (List<Category>) -> Unit) {
         firestore
             .collection(Constants.Firebace.CATEGORIES)

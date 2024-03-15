@@ -1,6 +1,3 @@
-package com.example.dz5_proba.ui.Gallery
-
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,28 +17,25 @@ import com.example.dz5_proba.ui.Gallery.Adapter.TaskAdapter
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.Firebase
-import com.google.firebase.auth.ActionCodeSettings
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.auth
 
 class GalleryFragment : Fragment() {
+
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
     private val taskManager = TaskManager()
     private val authManager = FireBaseAuthManager()
     private val adapter = TaskAdapter(taskManager::updateTask)
 
-
     //для google  регистрации
-    private val auth = Firebase.auth
+    private val auth = FirebaseAuth.getInstance()
     private val gso by lazy {
         GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
-            //Ошибка! toString()
             .build()
     }
-    val mGoogleSignInClienGoogle by lazy {
+    private val mGoogleSignInClient by lazy {
         GoogleSignIn.getClient(requireActivity(), gso)
     }
     private val googleSignInLauncher =
@@ -52,9 +46,10 @@ class GalleryFragment : Fragment() {
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 // Обработка ошибки
+                Log.e("GoogleSignIn", "signInResult:failed code=" + e.statusCode)
             }
-
         }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,10 +63,8 @@ class GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (auth.currentUser != null) {
-            UpdataUIGoogle()
+            updateUI()
         }
-        addListeners()
-        updateUI()
         init()
         addListeners()
     }
@@ -86,10 +79,8 @@ class GalleryFragment : Fragment() {
             setFragmentResultListener(CreateTaskFragment.TASK_RESULT_KEY) { _, _ ->
                 updateUI()
             }
-
-
         }
-        //Войти в систему
+
         binding.btnSignIn.setOnClickListener {
             if (!validate()) return@setOnClickListener
             signIn(
@@ -97,10 +88,9 @@ class GalleryFragment : Fragment() {
                 password = binding.etPassword.text.toString()
             )
         }
-        //Регистрация
+
         binding.btnSignUp.setOnClickListener {
             if (!validate()) return@setOnClickListener
-
             signUp(
                 email = binding.etEmail.text.toString(),
                 password = binding.etPassword.text.toString()
@@ -127,28 +117,27 @@ class GalleryFragment : Fragment() {
     }
 
     private fun signIn(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .addOnFailureListener {
                 Log.e("auth", "SignIn failed", it)
                 Toast.makeText(
                     requireContext(),
-                    "адрес электронной почты или пароль указаны неправильно Вход неправильно",
+                    "Ошибка входа: адрес электронной почты или пароль указаны неправильно",
                     Toast.LENGTH_SHORT
                 ).show()
             }
             .addOnSuccessListener {
                 updateUI()
-                Log.e("olol1", "signed in")
             }
     }
 
     private fun signUp(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnFailureListener {
                 Log.e("auth", "SignUp failed", it.cause)
                 Toast.makeText(
                     requireContext(),
-                    "адрес электронной почты или пароль указаны неправильно",
+                    "Ошибка регистрации: адрес электронной почты или пароль указаны неправильно",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -158,19 +147,24 @@ class GalleryFragment : Fragment() {
             }
     }
 
-    //МЕТОДЫ
     private fun firebaseAuthWithGoogle(token: String) {
         val credential = GoogleAuthProvider.getCredential(token, null)
         auth.signInWithCredential(credential)
             .addOnFailureListener {
-                Log.e("auth", "Ошибка не удалось войти в систему", it.cause) }
+                Log.e("auth", "Ошибка Google Sign-In", it.cause)
+                Toast.makeText(
+                    requireContext(),
+                    "Ошибка входа: не удалось войти в систему с помощью Google",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
             .addOnSuccessListener {
-                UpdataUIGoogle() }
+                updateUI()
+            }
     }
-    private fun UpdataUIGoogle() {}
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
-

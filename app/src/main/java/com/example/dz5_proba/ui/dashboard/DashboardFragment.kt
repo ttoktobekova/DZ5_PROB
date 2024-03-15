@@ -18,7 +18,6 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
     private val auth = Firebase.auth
     private val categoryManager = CategoryManager()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -183,11 +183,13 @@ class HomeFragment : Fragment() {
 
             }
     }
+
     private fun hideResetPassword() {
         binding.etConfirum.visibility = View.GONE
         binding.btnConfirm.visibility = View.GONE
         binding.etNewPassword.visibility = View.GONE
     }
+
     private fun showResetPassword() {
         binding.etConfirum.visibility = View.VISIBLE
         binding.btnConfirm.visibility = View.VISIBLE
@@ -215,8 +217,10 @@ class HomeFragment : Fragment() {
                 UpdataUIGoogle()
             }
     }
+
     private fun UpdataUIGoogle() {
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

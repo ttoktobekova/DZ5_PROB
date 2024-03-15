@@ -10,11 +10,19 @@ import com.google.firebase.firestore.firestore
 class FireBaseAuthManager {
     private val auth = Firebase.auth
     private val firestore = Firebase.firestore
-    fun userSignedUp(){
+
+    fun userSignedUp() {
         val user = User(
-            name = auth.currentUser?.displayName.toString())
-        firestore
-            .collection(Constants.Firebace.Users)
-            .document(auth.currentUser?.uid.toString())
-            .set(user)}
+            name = auth.currentUser?.displayName.toString()
+        )
+        fun userSignedUp() {
+            val user = User(
+                name = auth.currentUser?.displayName.toString()
+            )
+            firestore
+                .collection(Constants.Firebace.Users)
+                .document(auth.currentUser?.uid.toString())
+                .set(user)
+        }
+    }
 }

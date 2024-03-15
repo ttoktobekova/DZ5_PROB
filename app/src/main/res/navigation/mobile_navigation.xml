@@ -26,7 +26,7 @@
         android:id="@+id/galleryFragment"
         android:name="com.example.dz5_proba.ui.Gallery.GalleryFragment"
         android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" >
+        tools:layout="@layout/fragment_gallery">
         <action
             android:id="@+id/action_galleryFragment_to_createTaskFragment"
             app:destination="@id/createTaskFragment" />

@@ -1,4 +1,4 @@
-package com.example.dz5_proba.profile
+package com.example.dz5_proba
 
 import android.os.Bundle
 import android.util.Log
@@ -58,6 +58,7 @@ class ProfileFragment : Fragment() {
 
     private fun updateProfileData(newUsername: String, newAvatarUrl: String) {
         val userRef = firestore.collection("user1").document(userID)
+
         // Обновляем данные профиля в Firestore
         userRef
             .set(
